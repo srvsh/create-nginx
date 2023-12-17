@@ -8,7 +8,4 @@ resource "aws_vpc" "main" {
 
 resource "null_resource" "this" {}
 
-output "vpc_id" {
-  value = aws_vpc.main.id
-  description = "VPC id of the VPC"
-}
+
