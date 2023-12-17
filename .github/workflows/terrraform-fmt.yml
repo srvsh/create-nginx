@@ -1,0 +1,14 @@
+name: 'check terraform formate'
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  check_terraform_fmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform init
