@@ -1,5 +1,14 @@
-data "http" "my_public_ip" {
-  url = "https://ipv4.icanhazip.com"
+resource "terraform_data" "my_ip" {
+  triggers_replace = timestamp()
+
+  provisioner "local-exec" {
+    command = "curl -4 ifconfig.me > /tmp/my_ip.txt"
+  }
+}
+
+data "local_file" "my-ip" {
+  filename = "/tmp/my_ip.txt"
+  depends_on = [terraform_data.my_ip]
 }
 
 resource "aws_security_group" "allow_ssh" {
@@ -12,7 +21,7 @@ resource "aws_security_group" "allow_ssh" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${chomp(data.http.my_public_ip.response_body)}/32"]
+    cidr_blocks = ["${data.local_file.my-ip.content}/32"]
   }
 
   ingress {
@@ -36,6 +45,8 @@ resource "aws_security_group" "allow_ssh" {
   tags = {
     Name = "allow_ssh_nginx"
   }
+
+  depends_on = [terraform_data.my_ip]
 }
 
 
@@ -60,8 +71,8 @@ resource "aws_key_pair" "this" {
 }
 
 resource "aws_instance" "nginx" {
-  ami           = "ami-0006abfd85caddf82"
-  instance_type = "t4g.small"
+  ami           = "ami-0c101f26f147fa7fd"
+  instance_type = "t2.micro"
 
   tags = {
     Name = "master"

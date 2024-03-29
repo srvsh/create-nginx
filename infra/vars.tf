@@ -13,3 +13,9 @@ variable "shh_key_name" {
   default     = "nginx"
   description = "ssh key name to be created in EC2 and store in ~/.ssh folder"
 }
+
+variable "organisation" {
+  type = string
+  default = "asmigar"
+  description = "org name"
+}

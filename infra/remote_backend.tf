@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket  = "create-nginx-terraform-state"
+    bucket  = "asmigar-create-nginx-terraform-state"
     key     = "terraform.tfstate"
     region  = "us-east-1"
     encrypt = true
