@@ -6,9 +6,8 @@ resource "terraform_data" "my_ip" {
   }
 }
 
-data "local_file" "my-ip" {
-  filename = "/tmp/my_ip.txt"
-  depends_on = [terraform_data.my_ip]
+data "http" "my_public_ip" {
+  url = "https://ipv6.icanhazip.com"
 }
 
 resource "aws_security_group" "allow_ssh" {
@@ -21,7 +20,7 @@ resource "aws_security_group" "allow_ssh" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${data.local_file.my-ip.content}/32"]
+    ipv6_cidr_blocks = ["${chomp(data.http.my_public_ip.response_body)}/128"]
   }
 
   ingress {
@@ -45,8 +44,6 @@ resource "aws_security_group" "allow_ssh" {
   tags = {
     Name = "allow_ssh_nginx"
   }
-
-  depends_on = [terraform_data.my_ip]
 }
 
 
@@ -83,7 +80,7 @@ resource "aws_instance" "nginx" {
   key_name               = aws_key_pair.this.key_name
   user_data              = <<-EOT
 		#!/bin/bash
-		yum install nginx -y
+		yum install nginx python -y
         systemctl start nginx
 		EOT
 }
