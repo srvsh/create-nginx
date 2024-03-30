@@ -83,7 +83,7 @@ resource "aws_instance" "nginx" {
   key_name               = aws_key_pair.this.key_name
   user_data              = <<-EOT
 		#!/bin/bash
-		yum install nginx -y
+		yum install nginx python -y
         systemctl start nginx
 		EOT
 }
