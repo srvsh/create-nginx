@@ -35,7 +35,7 @@ $ aws iam list-users
 
 ## Create Remote State
 Terraform keeps all the info about the resources in a state file. Rather than keeping it on local disk, we store it on S3 bucket.
-To learn more: [Read Docs](https://developer.hashicorp.com/terraform/language/settings/backends/s3)
+To learn more read the docs [here](https://developer.hashicorp.com/terraform/language/settings/backends/s3)
 
 Run below terraform command to create remote state bucket on your AWS account. 
 ```bash
@@ -49,7 +49,7 @@ cd infra; terraform init; terraform apply --auto-approve
 ```
 
 ## Report Bug
-To raise issue/bug: click [here](https://github.com/asmigar/create-nginx/issues/new).
+To raise issue/bug click [here](https://github.com/asmigar/create-nginx/issues/new).
 
 ## Want to Discuss More?
-Feel free to reach out to me [here](https://sagarmaurya.dev/)
+Feel free to reach out to me [here](https://sagarmaurya.dev/).
