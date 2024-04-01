@@ -1,5 +1,8 @@
-# How To?
+# What Is This?
+A simple terraform project to create an EC2 instance with nginx and python installed. Also, generates ssh key to access the instance.  
 
+
+# How To?
 ## Pre-requisites
 1. Create an IAM user with Administrator access [here](https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-1#/users)
 2. Create Access key for the above user for CLI access. You will find the option under **Security Credentials** tab on the IAM user console.
@@ -30,21 +33,23 @@ $ aws iam list-users
 ```
 6. Install Terraform's latest version from [here](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 
-## Remote State
+## Create Remote State
 Terraform keeps all the info about the resources in a state file. Rather than keeping it on local disk, we store it on S3 bucket.
-[Read docs on remote state](https://developer.hashicorp.com/terraform/language/settings/backends/s3)
+To learn more: [Read Docs](https://developer.hashicorp.com/terraform/language/settings/backends/s3)
 
 Run below terraform command to create remote state bucket on your AWS account. 
 ```bash
 cd remote_state; terraform init; terraform apply --auto-approve
 ```
 
-## Create infra
-
+## Create Infra
 Run below command to create EC2 instance. This will even output the ssh command to access the instance.
 ```bash
 cd infra; terraform init; terraform apply --auto-approve
 ```
 
 ## Report Bug
-If in case you find any bug/issues in the codebase. Feel free to raise an issue on the repo. To raise issue click [here](https://github.com/asmigar/create-nginx/issues/new).
+To raise issue/bug: click [here](https://github.com/asmigar/create-nginx/issues/new).
+
+## Want to Discuss More?
+Feel free to reach out to me [here](https://sagarmaurya.dev/)
