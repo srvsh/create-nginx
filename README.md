@@ -12,7 +12,7 @@ AWS Secret Access Key [None]: [Enter your corresponding secret access key here. 
 Default region name [None]: [You can keep it blank. So just press Enter]
 Default output format [None]: [You can keep it blank. So just press Enter]
 ```
-5. Verify your aws creds are configure by running `aws iam list-users`. You should at least see the admin user you created in step 1.
+5. Verify your aws creds are configured by running `aws iam list-users`. You should at least see the admin user you created in step 1.
 ```bash
 $ aws iam list-users
 {
