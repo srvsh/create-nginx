@@ -4,7 +4,7 @@
 1. Create an IAM user with Administrator access [here](https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-1#/users)
 2. Create Access key for the above user for CLI access. You will find the option under **Security Credentials** tab on the IAM user console.
 3. Install aws cli on your machine. Steps [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
-4. Run `aws configure`. It will prompt for the Access Key and Secret Access Key you created in Step 1.
+4. Run `aws configure`. It will prompt for the Access Key and Secret Access Key you created in Step 2.
 ```bash
 $ aws configure
 AWS Access Key ID [None]: [Enter your access key id here. And then press enter]
