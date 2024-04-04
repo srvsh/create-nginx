@@ -1,6 +1,6 @@
 provider "aws" {
   region  = "us-east-1"
-  profile = "default"
+  profile = "asmigar"
   default_tags {
     tags = {
       Organisation = "Asmigar"
@@ -9,13 +9,16 @@ provider "aws" {
   }
 }
 
+resource "random_id" "s3_suffix" {
+  byte_length = 4
+}
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "${var.organisation}-create-nginx-terraform-state"
+  bucket = "${var.organisation}-create-nginx-terraform-state-${random_id.s3_suffix.hex}"
 
   # Prevent accidental deletion of this S3 bucket
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }
 
